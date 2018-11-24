@@ -1,0 +1,2 @@
+ArrayList<Book> list = new ArrayList<Book>();Book b1 = new Book("Great Expectations");Book b2 = new Book("War and Peace");list.add(b1);list.add(b2);Person p1 = new Person();p1.setName("Fred");b1.setPerson(p1);System.out.println(list.get(0).getPerson().getName());list.indexOf(b2);
+list.remove(b1);
