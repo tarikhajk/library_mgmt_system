@@ -104,6 +104,8 @@ public class MyLibrary {
 				+ this.getPeople().size() + " people";
 	}
 	
+	
+	// Main method
 	public static void main(String[] args) {
 		// create new library
 		MyLibrary testLibrary = new MyLibrary("Test Drive Library");
@@ -126,6 +128,15 @@ public class MyLibrary {
 		testLibrary.checkIn(b1);
 		testLibrary.checkOut(b2, jim);
 		testLibrary.printStatus();
+		
+		// Save to XML file and get library back
+		MyUtilities.saveMyLibraryToXMLFile("testmain.xml", testLibrary);
+		MyLibrary newMyLibrary = MyUtilities.getMyLibraryFromXMLFile("testmain.xml");
+		
+		System.out.println("Printing info from saved XML file...");
+		newMyLibrary.printStatus();
+		
+		
 	}
 
 	private void printStatus() {

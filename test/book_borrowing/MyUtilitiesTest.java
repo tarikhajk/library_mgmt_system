@@ -79,5 +79,25 @@ public class MyUtilitiesTest {
 //				startMyLibrary.equals(endMyLibrary));
 		
 	}
+	
+	@Test
+	public void saveToXMLFile() {
+		MyLibrary startMyLibrary = createMyLibrary();
+		String fileName = "testmylibrary.xml";
+		File testFile = new File(fileName);
+		testFile.delete();
+		assertFalse("File should not exist.", testFile.exists());
+		assertTrue("File should have saved.", 
+				MyUtilities.saveMyLibraryToXMLFile(fileName, startMyLibrary));
+		
+		MyLibrary endMyLibrary = MyUtilities.getMyLibraryFromXMLFile(fileName);
+		
+		// Check that endMyLibrary object has all the same attributes as
+		// the startMyLibrary object.
+		assertEquals("Test",endMyLibrary.getName());
+		assertEquals(2, endMyLibrary.getBooks().size());
+		assertEquals(2, endMyLibrary.getPeople().size());
+		assertEquals("Fred", endMyLibrary.getBooks().get(0).getPerson().getName());
+	}
 
 }
