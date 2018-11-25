@@ -56,17 +56,42 @@ public class MyUtilities {
 
 	public static String convertToXML(MyLibrary ml) {
 		XStream xstream = new XStream(new DomDriver());
+		
+		// Give each object a unique ID, to avoid path-wise references
+		xstream.setMode(XStream.ID_REFERENCES);
+		
+		// Replace class names with more readable names
+		xstream.alias("person", Person.class);
+		xstream.alias("book", Book.class);
+		xstream.alias("mylib", MyLibrary.class);
 		return xstream.toXML(ml);
 	}
 
 	public static MyLibrary convertFromXML(String testXMLOut) {
 		MyLibrary ml = null;
 		XStream xstream = new XStream(new DomDriver());
+		
+		// Give each object a unique ID, to avoid path-wise references
+		xstream.setMode(XStream.ID_REFERENCES);
+		
+		// Replace class names with more readable names
+		xstream.alias("person", Person.class);
+		xstream.alias("book", Book.class);
+		xstream.alias("mylib", MyLibrary.class);
 		Object obj = xstream.fromXML(testXMLOut);
 		if (obj instanceof MyLibrary) {
 			ml = (MyLibrary)obj;
 		}
 		return ml;
+	}
+
+	public static boolean saveMyLibraryToXMLFile(String fileName, 
+			MyLibrary ml) {
+		return saveStringToFile(fileName, convertToXML(ml));
+	}
+
+	public static MyLibrary getMyLibraryFromXMLFile(String fileName) {
+		return convertFromXML(getStringFromFile(fileName));
 	}
 	
 

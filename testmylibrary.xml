@@ -1,0 +1,24 @@
+<mylib id="1">
+  <name>Test</name>
+  <books id="2">
+    <book id="3">
+      <title>Book1</title>
+      <author>unknown author</author>
+      <person id="4">
+        <name>Fred</name>
+        <maxBooks>3</maxBooks>
+      </person>
+    </book>
+    <book id="5">
+      <title>Book 2</title>
+      <author>unknown author</author>
+    </book>
+  </books>
+  <people id="6">
+    <person reference="4"/>
+    <person id="7">
+      <name>Sue</name>
+      <maxBooks>3</maxBooks>
+    </person>
+  </people>
+</mylib>
