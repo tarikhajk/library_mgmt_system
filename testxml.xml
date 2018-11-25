@@ -1,0 +1,24 @@
+<mylib id="1">
+  <name>Test Drive Library</name>
+  <books id="2">
+    <book id="3">
+      <title>War and Peace</title>
+      <author>Tolstoy</author>
+    </book>
+    <book id="4">
+      <title>Great Expectations</title>
+      <author>Dickens</author>
+      <person id="5">
+        <name>Jim</name>
+        <maxBooks>3</maxBooks>
+      </person>
+    </book>
+  </books>
+  <people id="6">
+    <person reference="5"/>
+    <person id="7">
+      <name>Sue</name>
+      <maxBooks>3</maxBooks>
+    </person>
+  </people>
+</mylib>

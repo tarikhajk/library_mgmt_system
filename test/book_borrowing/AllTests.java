@@ -1,12 +1,24 @@
 package book_borrowing;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.junit.runner.*;
+import org.junit.runners.*;
+
+// new way (JUnit 4)
+@RunWith(Suite.class) // annotations (@) used by JUnit4 to identify test classes
+@Suite.SuiteClasses(value = {
+		PersonTest.class,
+		BookTest.class,
+		MyLibraryTest.class,
+		MyUtilitiesTest.class
+})
 
 public class AllTests {
+	
 
+	// Old --> JUnit 3
+/* 
 	public static Test suite() {
-		TestSuite suite = new TestSuite(AllTests.class.getName());
+		TestSuite suite = new TestSuite("Test for org.totalbeginner.tutorial");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(BookTest.class);
 		suite.addTestSuite(PersonTest.class);
@@ -14,5 +26,5 @@ public class AllTests {
 		//$JUnit-END$
 		return suite;
 	}
-
+*/
 }
