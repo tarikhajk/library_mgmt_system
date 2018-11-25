@@ -1,6 +1,8 @@
 # Library Management System
 
-Java project following Mark Dexter's online tutorial demonstrating TDD, Unit Testing via JUnit, and database persistence with writing done via XML.
+Java project following Mark Dexter's online tutorial demonstrating TDD, Unit Testing via JUnit. Database persistence is explored in two ways:
+* with XML using [XStream](http://x-stream.github.io/) framework.
+* using Java Serialization
 
 ### Prerequisites
 
