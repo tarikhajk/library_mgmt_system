@@ -1,12 +1,26 @@
 package book_borrowing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MyLibrary {
+/*
+ * @author Tarik Haj-Khalil
+ * @version 1.0
+ * The MyLibrary class represents a collection of a given 
+ * group of People and Books and keeps track of what book
+ * has been checked out to what person.
+ * 
+ */
 
-	String name;
-	ArrayList<Book> books;
-	ArrayList<Person> people;
+public class MyLibrary implements Serializable{
+	/**
+	 * Generated SerialUID by Eclipse
+	 */
+	private static final long serialVersionUID = -5755277311442558695L;
+	
+	String name; // Name of MyLibrary instance
+	ArrayList<Book> books; // List of possible books to checkout
+	ArrayList<Person> people; // List of people who can checkout books
 
 
 	public MyLibrary(String name) {
@@ -129,14 +143,21 @@ public class MyLibrary {
 		testLibrary.checkOut(b2, jim);
 		testLibrary.printStatus();
 		
-		// Save to XML file and get library back
-		MyUtilities.saveMyLibraryToXMLFile("testmain.xml", testLibrary);
-		MyLibrary newMyLibrary = MyUtilities.getMyLibraryFromXMLFile("testmain.xml");
+		// Save library to XML file and get library back
+		MyUtilities.saveMyLibraryToXMLFile("testxml.xml", testLibrary);
+		MyLibrary xmlMyLibrary = 
+				MyUtilities.getMyLibraryFromXMLFile("testxml.xml");
 		
 		System.out.println("Printing info from saved XML file...");
-		newMyLibrary.printStatus();
+		xmlMyLibrary.printStatus();
 		
+		// Save library using Java Serialization and get library back
+		MyUtilities.saveMyLibraryToSerialFile("testserial.xml", testLibrary);
+		MyLibrary serialMyLibrary = 
+				MyUtilities.getMyLibraryFromSerialFile("testserial.xml");
 		
+		System.out.println("Printing info from Java Serialization...");
+		serialMyLibrary.printStatus();
 	}
 
 	private void printStatus() {

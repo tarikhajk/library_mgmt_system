@@ -1,9 +1,24 @@
 package book_borrowing;
 
-public class Person {
+import java.io.Serializable;
+
+/*
+ * @author Tarik Haj-Khalil
+ * @version 1.0
+ * The Person class represents the people who
+ * check out books from a MyLibrary instance.
+ * 
+ */
+
+public class Person implements Serializable{
+	/**
+	 * Generated SerialUID by Eclipse
+	 */
+	private static final long serialVersionUID = 2600130568284062476L;
+	
 	// fields
-	private String name;
-	private int maxBooks;
+	private String name; // Person's name
+	private int maxBooks; // Max number of books they can checkout
 	
 	// constructor
 	public Person() {

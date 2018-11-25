@@ -85,6 +85,8 @@ public class MyUtilities {
 		return ml;
 	}
 
+	
+	// Using XML (XStream
 	public static boolean saveMyLibraryToXMLFile(String fileName, 
 			MyLibrary ml) {
 		return saveStringToFile(fileName, convertToXML(ml));
@@ -92,6 +94,60 @@ public class MyUtilities {
 
 	public static MyLibrary getMyLibraryFromXMLFile(String fileName) {
 		return convertFromXML(getStringFromFile(fileName));
+	}
+	
+	
+	// Using Java Serialization
+	// Notice: This method is very similar to the 'saveFileToFile' method
+	public static boolean saveMyLibraryToSerialFile(String fileName, 
+			MyLibrary ml) {
+		boolean saved = false;
+		try {
+			// This writes byte data to a file
+			FileOutputStream fos = new FileOutputStream(fileName);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			
+			// Top lines could've been refactored to the following, but the code
+			// gets messy:
+//			ObjectOutputStream oos = new ObjectOutputStream(
+//					new BufferedOutputStream(
+//							new FileOutputStream(fileName)));
+			
+			// Inner try block
+			try {
+				oos.writeObject(ml);
+				saved = true;
+			}
+			finally {
+				oos.close();
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return saved;
+	}
+
+	public static MyLibrary getMyLibraryFromSerialFile(String fileName) {
+		MyLibrary ml = null;
+		
+		try {
+			ObjectInputStream ois = new ObjectInputStream(
+					new BufferedInputStream(
+							new FileInputStream(fileName)));
+			try {
+				Object obj = ois.readObject();
+				if (obj instanceof MyLibrary) {
+					ml = (MyLibrary)obj;
+				}
+			}
+			finally {
+				ois.close();
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return ml;
 	}
 	
 
